@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/ashwin/.cargo'
+let g:netrw_dirhist_8='/home/ashwin'
+let g:netrw_dirhist_7='/home/ashwin/.config/rofi'
+let g:netrw_dirhist_6='/home/ashwin/.config/polybar'
+let g:netrw_dirhist_5='/home/ashwin/.config/rofi'
+let g:netrw_dirhist_4='/home/ashwin/.config/mpd'
+let g:netrw_dirhist_3='/home/ashwin/.config/rofi'
+let g:netrw_dirhist_2='/home/ashwin/.config/polybar'
+let g:netrw_dirhist_1='/home/ashwin/Documents/coding/robotics'
+let g:netrw_dirhist_0='/home/ashwin/Documents/coding'
