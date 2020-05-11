@@ -36,11 +36,9 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-      context
-      vcs                     # git status
-      newline
       dir                     # current directory
       prompt_char           # prompt symbol
+
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -49,6 +47,7 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
       status                  # exit code of the last command
+      vcs
       command_execution_time  # duration of the last command
       background_jobs         # presence of background jobs
       direnv                  # direnv status (https://direnv.net/)
@@ -78,7 +77,7 @@
       vim_shell               # vim shell indicator (:sh)
       # midnight_commander    # midnight commander shell (https://midnight-commander.org/)
       vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
-      newline
+      # newline
       battery               # internal battery
       os_icon                 # os identifier
       # vpn_ip                # virtual private network indicator
