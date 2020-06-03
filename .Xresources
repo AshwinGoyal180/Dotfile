@@ -1,0 +1,178 @@
+!-------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
+
+Xft.dpi:       96
+Xft.antialias: true
+Xft.rgba:      none
+Xft.hinting:   true
+Xft.autohint:  true
+Xft.hintstyle: hintfull
+
+!st extra settings
+
+
+!polybar extra setting
+polybar.height:40
+
+!-------------------------------------------------------------------------------
+! URxvt settings
+! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
+! More info at:
+! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!-------------------------------------------------------------------------------
+URxvt.keysym.Control-Shift-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Shift-V: eval:paste_clipboard
+URxvt*dynamicColors:          on
+URxvt.keysym.C-minus:         resize-font:smaller
+URxvt.keysym.C-plus:          resize-font:bigger
+URxvt.keysym.C-equal:         resize-font:reset
+URxvt.keysym.C-question:      resize-font:show
+
+URxvt.keysym.C-Escape: perl:keyboard-select:activate
+URxvt.keysym.C-s:      perl:keyboard-select:search
+
+URxvt*saveLines:      65535
+!Font settings
+URxvt.depth:          32
+URxvt.geometry:       90x30
+URxvt.transparent:    false
+URxvt.fading:         0
+!icon
+URxvt.iconFile:       /usr/share/icons/breeze-dark/apps/64/utilities-terminal.svg
+! URxvt.urgentOnBell:         true
+! URxvt.visualBell:           true
+URxvt.loginShell:     true
+URxvt.letterspace:    -4
+URxvt.internalBorder: 3
+URxvt.lineSpace:      -1
+! Fonts
+!URxvt.allow_bold:     true
+/* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
+!URxvt*font:              xft:monospace:size=14
+!URxvt*boldFont:          xft:monospace:size=14
+URxvt*font:           xft:MesloLGS NF:size=14
+
+!,xft:FantasqueSansMono Nerd Font Mono:size=14
+!MesloLGS NF:size=14,xft:FantasqueSansMono Nerd Font Mono:size=20, x
+!URxvt*boldFont:       xft:MesloLGS NF:size=14
+
+
+! Fix font space
+! Scrollbar
+URxvt.scrollStyle:     rxvt
+URxvt.scrollBar:       false
+! Perl extensions
+URxvt*perl-ext-common: default,matcher,resize-font,keyboard-select
+URxvt*urlLauncher:     /usr/bin/xdg-open
+!URxvt.matcher.pattern.1:     \\bwww\\.[\\w-]\\.[\\w./?&amp;@#-]*[\\w/-]
+URxvt*matcher.button:  1
+URxvt.matcher.rend.0:  Uline Bold fg5
+! Cursor
+st.cursorBlink: True
+URxvt.cursorBlink:     true
+URxvt.cursorColor:     #f5fbf3
+! Pointer
+URxvt.pointerBlank:    true
+! Set depth to make transparency work.
+URxvt*depth:           32
+URxvt.iso14755:        true
+
+URxvt.iso14755_52: false
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #57c25e
+#define S_base00        #b8ab9f
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+*.alpha:0.75
+!!*.color0:#0e000f
+!*background:             #101010
+!*background:            [93]#181B28
+!*URxvt.background:       [60]#0e000f
+!*foreground:             S_base0
+*fadeColor:              S_base03
+*cursorColor:            S_base1
+*pointerColorBackground: S_base01
+*pointerColorForeground: S_base1
+!
+#define S_yellow        #b5892f
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #baafcf
+#define S_green         #82e05d
+!
+!!! black dark/light
+!*color0: S_base02
+!*color8: S_base03
+!
+!!! red dark/light
+!*color1: S_red
+!*color9: S_orange
+!
+!!! green dark/light
+!*color2:  S_green
+!*color10: S_base01
+!
+!!! yellow dark/light
+!*color3:  S_yellow
+!*color11: S_base00
+!
+!!! blue dark/light
+!*color4:  S_blue
+!*color12: S_base0
+!
+!!! magenta dark/light
+!*color5:  S_magenta
+!*color13: S_violet
+!
+!!! cyan dark/light
+!*color6:  S_cyan
+!*color14: S_base1
+!
+!!! white dark/light
+!*color7:  S_base2
+!*color15: S_base3
+! special
+*.foreground:   #839496
+*.background:   #000000
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #101010
+*.color8:       #404040
+
+! red
+*.color1:       #e84f4f
+*.color9:       #d23d3d
+
+! green
+*.color2:       #b8d68c
+*.color10:      #a0cf5d
+
+! yellow
+*.color3:       #e1aa5d
+*.color11:      #f39d21
+
+! blue
+*.color4:       #7dc1cf
+*.color12:      #839496
+
+! magenta
+*.color5:       #9b64fb
+*.color13:      #8542ff
+
+! cyan
+*.color6:       #6d878d
+*.color14:      #93a1a1
+
+! white
+*.color7:       #dddddd
+*.color15:      #dddddd
+
