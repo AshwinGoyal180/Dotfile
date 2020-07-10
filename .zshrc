@@ -32,6 +32,7 @@ alias lx="colorls -A --sd -X"
 alias pbcopy='xsel --clipboard --input'
 alias tmux='tmux -2 -u'
 alias dotfiles='/usr/bin/git --git-dir=/home/ashwin/Documents/Dotfiles/ --work-tree=$HOME'
+alias ls="ls --color=auto"
 export PATH="$PATH:/home/ashwin/.gem/ruby/2.6.0/bin"
 #xport PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
@@ -149,9 +150,21 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
 
+
+man() {
+	LESS_TERMCAP_mb=$'\e[1;32'\
+    LESS_TERMCAP_md=$'\e[01;32m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;4;31m' \
+    command man "$@"
+}
+
 #ESP32
-export IDF_PATH=~/esp/esp-idf
-export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
+#export IDF_PATH=~/esp/esp-idf
+#export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
 
 PATH="/home/ashwin/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/ashwin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
