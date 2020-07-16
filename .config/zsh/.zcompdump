@@ -317,6 +317,7 @@ _comps=(
 'fc' '_fc'
 'fc-list' '_xft_fonts'
 'fc-match' '_xft_fonts'
+'fd' '_fd'
 'feh' '_feh'
 'fetchmail' '_fetchmail'
 'ffmpeg' '_ffmpeg'
@@ -1214,7 +1215,6 @@ _comps=(
 'talk' '_other_accounts'
 'tar' '_tar'
 'tardy' '_tardy'
-'task' '_task'
 'tcpdump' '_tcpdump'
 'tcp_open' '_tcpsys'
 'tcptraceroute' '_tcptraceroute'
@@ -1260,7 +1260,6 @@ _comps=(
 'trap' '_trap'
 'tree' '_tree'
 'trial' '_twisted'
-'trizen' '_trizen'
 'trove' '_openstack'
 'true' '_nothing'
 'truss' '_truss'
@@ -1460,6 +1459,7 @@ _comps=(
 'xview' '_xloadimage'
 'xvnc4viewer' '_vnc'
 'xvncviewer' '_vnc'
+'xwallpaper' '_xwallpaper'
 'xwd' '_x_utils'
 'xwininfo' '_x_utils'
 'xwit' '_xwit'
@@ -1644,16 +1644,16 @@ bindkey '^[~' _bash_complete-word
 
 autoload -Uz _alacritty _bluetoothctl _bootctl _busctl _cargo \
             _coredumpctl _curl _docker _docker-compose _dub \
-            _flatpak _hostnamectl _j _journalctl _kdeconnect \
-            _kernel-install _libinput _localectl _loginctl _machinectl \
-            _meson _mkinitcpio _mpv _networkctl _ninja \
-            _pacman _pkgfile _polybar _polybar_msg _pulseaudio \
-            _pulseaudio-ctl _qpdf _resolvectl _rg _rustup \
-            _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files _sway \
-            _swaymsg _systemctl _systemd _systemd-analyze _systemd-delta \
-            _systemd-inhibit _systemd-nspawn _systemd-run _systemd-tmpfiles _task \
-            _timedatectl _trizen _udevadm _udiskie _udiskie-mount \
-            _udiskie-umount _yay _zathura _cdr _all_labels \
+            _fd _flatpak _hostnamectl _j _journalctl \
+            _kdeconnect _kernel-install _libinput _localectl _loginctl \
+            _machinectl _meson _mkinitcpio _mpv _networkctl \
+            _ninja _pacman _pkgfile _polybar _polybar_msg \
+            _pulseaudio _pulseaudio-ctl _qpdf _resolvectl _rg \
+            _rustup _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files \
+            _sway _swaymsg _systemctl _systemd _systemd-analyze \
+            _systemd-delta _systemd-inhibit _systemd-nspawn _systemd-run _systemd-tmpfiles \
+            _timedatectl _udevadm _udiskie _udiskie-mount _udiskie-umount \
+            _xwallpaper _yay _zathura _cdr _all_labels \
             _all_matches _alternative _approximate _arg_compile _arguments \
             _bash_completions _cache_invalid _call_function _combination _complete \
             _complete_debug _complete_help _complete_help_generic _complete_tag _comp_locale \

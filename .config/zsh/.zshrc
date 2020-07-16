@@ -48,10 +48,10 @@ setopt extendedhistory
 alias lc="colorls --sd -X "
 #alias code="~/Documents/eYFI-IDE/VSCode-linux-x64/code"
 alias lx="colorls -A --sd -X"
-alias pbcopy='xsel --clipboard --input'
 #:alias tmux='tmux -2 -u'
-alias dotfiles='/usr/bin/git --git-dir=/home/ashwin/Documents/Dotfiles/ --work-tree=$HOME'
-alias ls="ls --color=auto"
+
+# Export PATH
+
 export PATH="$PATH:/home/ashwin/.gem/ruby/2.6.0/bin"
 #xport PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
@@ -59,11 +59,19 @@ export PATH="$PATH:/home/ashwin/.gem/ruby/2.6.0/bin"
 export PATH="$PATH:/home/ashwin/development/flutter/bin"
 export PATH="$PATH:/home/ashwin/Android/Sdk/emulator"
 export PATH="$PATH:/home/ashwin/Android/Sdk/platform-tools"
-export PATH="$PATH:/home/ashwin/bin"
 export PATH="$PATH:/home/ashwin/.scripts"
 export PATH="$PATH:/opt/android-sdk/platform-tools"
-#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
+#ESP32
+#export IDF_PATH=~/esp/esp-idf
+#export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
+
+# PERL PATH
+PATH="/home/ashwin/archive/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/ashwin/archive/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/ashwin/archive/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/ashwin/archive/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/ashwin/archive/perl5"; export PERL_MM_OPT;
 
 
 # vi -mode
@@ -159,19 +167,30 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # Change the window title of X terminals
-case ${TERM} in
-	xterm*|st*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-		;;
-	screen*)
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-		;;
-esac
+
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+	print -Pn -- '\e]2;%n@%m %c\a'
+	[[ "$TERM" == 'screen'* ]] && print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%c\005{-}\e\\'
+}
+
+function xterm_title_preexec () {
+	print -Pn -- '\e]2;%n@%m %c %# ' && print -n -- "${(q)1}\a"
+	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%c\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
+}
+
+
+if [[ "$TERM" == (st*|alacritty*|gnome*|konsole*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+
 
 
 # Powerlevel10k settings:
 
-source /home/ashwin/.config/powerlevel10k/powerlevel10k.zsh-theme
+source /home/ashwin/.config/zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
@@ -181,17 +200,6 @@ source /home/ashwin/.config/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-
-
-#ESP32
-#export IDF_PATH=~/esp/esp-idf
-#export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"
-
-PATH="/home/ashwin/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/ashwin/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/ashwin/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/ashwin/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/ashwin/perl5"; export PERL_MM_OPT;
 
 # Man pages color
 man() {

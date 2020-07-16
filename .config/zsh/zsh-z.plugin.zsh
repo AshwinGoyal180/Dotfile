@@ -83,8 +83,8 @@ With no ARGUMENT, list the directory history in ascending rank.
 }
 
 # If the datafile is a directory, print a warning
-[[ -d ${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}} ]] && {
-  print "ERROR: ZSH-z's datafile (${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}) is a directory." >&2
+[[ -d ${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}} ]] && {
+  print "ERROR: ZSH-z's datafile (${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}}) is a directory." >&2
 }
 
 # Load zsh/datetime module, if necessary
@@ -107,7 +107,7 @@ zsystem supports flock &> /dev/null && ZSHZ[use_flock]=1
 ############################################################
 _zshz_add_path() {
 
-  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}
+  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}}
 
   # $HOME isn't worth matching
   [[ $* == "$HOME" ]] && return
@@ -182,7 +182,7 @@ _zshz_update_datafile() {
 
   local -a lines existing_paths
   local now=$EPOCHSECONDS line
-  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}
+  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}}
   local path_field rank_field time_field count x
 
   rank[$add_path]=1
@@ -242,7 +242,7 @@ _zshz_legacy_complete() {
   setopt LOCAL_OPTIONS EXTENDED_GLOB
 
   local line path_field
-  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}
+  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}}
   local -a lines
 
   # Replace spaces in the search string with asterisks for globbing
@@ -276,7 +276,7 @@ _zshz_legacy_complete() {
 _zshz_remove_path() {
   setopt LOCAL_OPTIONS EXTENDED_GLOB
 
-  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}
+  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}}
 
   # TODO: Take $ZSHZ_OWNER into account?
 
@@ -422,7 +422,7 @@ _zshz_find_matches() {
   local fnd=$1 method=$2 format=$3
 
   # Allow the user to specify the datafile name in $ZSHZ_DATA (default: ~/.z)
-  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.z}}
+  local datafile=${ZSHZ_DATA:-${_Z_DATA:-${HOME}/.config/zsh/.z}}
 
   # If datafile is a symlink, dereference it
   [[ -h $datafile ]] && datafile=${datafile:A}
