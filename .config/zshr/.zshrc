@@ -13,10 +13,13 @@ autoload -U colors && colors # Load colors
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
+ssh_info() {
+  [[ "$SSH_CONNECTION" != '' ]] && echo '%(!.%{$fg[red]%}.%{$fg[yellow]%})%n%{$reset_color%}@%{$fg[green]%}%m%{$reset_color%}:' || echo ''
+}
 
-#local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-#PROMPT="%F%(!.%{$fg[red]%}.%{$fg[green]%})[%(!.%{$fg[red]%}.%{$fg[green]%})%n%(!.%{$fg[red]%}.%{$fg[green]%})@%(!.%{$fg[red]%}.%{$fg[green]%})%M %{$fg[white]%}%c%(!.%{$fg[red]%}.%{$fg[green]%})]%{$reset_color%}%f${ret_status}%{$reset_color%}"
-#
+local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT="%F%(!.%{$fg[red]%}.%{$fg[green]%})[%(!.%{$fg[red]%}.%{$fg[green]%})%n%(!.%{$fg[red]%}.%{$fg[green]%})@%(!.%{$fg[red]%}.%{$fg[green]%})%M %{$fg[white]%}%c%(!.%{$fg[red]%}.%{$fg[green]%})]%{$reset_color%}%f${ret_status}%{$reset_color%}"
+
 
 # Basic auto/tab complete:
 autoload -U compinit

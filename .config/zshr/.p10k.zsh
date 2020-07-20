@@ -38,6 +38,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       context
       dir                     # current directory
+      vcs                     # git status
       prompt_char           # prompt symbol
   )
 
@@ -76,7 +77,6 @@
       # midnight_commander    # midnight commander shell (https://midnight-commander.org/)
       #vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
       battery               # internal battery
-      vcs                     # git status
       # vpn_ip                # virtual private network indicator
       # ram                   # free RAM
       # load                  # CPU load
@@ -177,7 +177,7 @@
   fi
 
   # Default background color.
-  typeset -g POWERLEVEL9K_BACKGROUND=000
+  typeset -g POWERLEVEL9K_BACKGROUND=234
 
   # Separator between same-color segments on the left.
   typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%242F\uE0B1'
@@ -910,7 +910,7 @@
   # behavior where they contain the end times of their preceding commands.
   typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=false
   # Custom icon.
-  typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=''
+  # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%244Fat '
 
