@@ -1,0 +1,24 @@
+sw_volume: 98
+audio_device_state:1:Pulseaudio Output
+audio_device_state:1:lossy
+audio_device_state:1:Visualizer feed
+state: pause
+current: 7
+time: 141.890000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:30 Seconds to Mars/2010-06-24_ 1LIVE 2010_ Acoustic Set_ 1LIVE, Cologne, Germany/04 Kings and Queens.mp3
+1:A Shell in the Pit/Hydrophile/09 Minke (Bottles).mp3
+2:A Shell in the Pit/Hydrophile/09 Minke (Bottles).mp3
+3:Various Artists/Rock On!!/01 Farhan Akhtar - Socha Hai.mp3
+4:Nigel Stanford/Solar Echoes/01 Solar Echoes.mp3
+5:Nigel Stanford/Solar Echoes/02 Entropy.mp3
+6:Nigel Stanford/Solar Echoes/03 The Edge.mp3
+7:Nigel Stanford/Solar Echoes/04 Cymatics.mp3
+playlist_end

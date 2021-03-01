@@ -12,6 +12,10 @@
 
 
 # starting any third part applications
+
+#autolock
+exec --no-startup-id xautolock -time 10 -locker "i3exit lock" -nowlocker "i3exit lock" -detectsleep -corners 000-
+exec --no-startup-id xss-lock -- i3lock -n -i /home/ashwin/Pictures/wallpapers/lock.png
 # compositor
 exec --no-startup-id picom
 #exec --no-startup-id tablet.sh
@@ -21,23 +25,21 @@ exec --no-startup-id picom
 exec --no-startup-id redshift-gtk
 #exec --no-startup-id sleep 5 ; aw-qt #activity watch
 # loading data for urxvt and others
-exec_always --no-startup-id /usr/bin/xrdb /home/ashwin/.Xresources
-exec --no-startup-id /usr/bin/xrdb /home/ashwin/.Xresources
+# exec_always --no-startup-id /usr/bin/xrdb /home/ashwin/.Xresources
+# exec --no-startup-id /usr/bin/xrdb /home/ashwin/.Xresources
 exec --no-startup-id wal -R
 exec --no-startup-id gufw_icon.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-fill ~/.config/i3/background.jpg
 exec_always --no-startup-id ~/.config/conky/ashwin/launch
 #exec --no-startup-id copyq
 #exec --no-startup-id franz
-#exec --no-startup-id mpDris2
 exec --no-startup-id gnome-keyring-daemon
 exec --no-startup-id nm-applet
-exec --no-startup-id pasystray
-exec --no-startup-id dunst
+exec --no-startup-id volctl
+# exec --no-startup-id pasystray
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id libinput-gestures
-exec_always --no-startup-id ~/.scripts/bin/keyboard
+#exec_always --no-startup-id ~/archive/.scripts/bin/keyboard
 #bluetooth applet
 exec --no-startup-id blueman-applet
 #popup that listens to SU requests and shows a UI
@@ -45,9 +47,13 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #file indexing throughout the system
 exec --no-startup-id tracker daemon -s
 #auto starting work tools
+exec --no-startup-id dolphin --daemon
 exec --no-startup-id clipmenud
 exec --no-startup-id mattermost-desktop
 exec --no-startup-id syncthing
+
+
+
 
 
 
@@ -66,15 +72,17 @@ bindsym $mod+Shift+minus scratchpad show
 #exec_always --no-startup-id scrcpy -name MotoOneAction
 #for_window [instance="MotoOneAction"] floating enable;
 for_window [class="scrcpy"] move scratchpad;
-bindsym F1 [class="scrcpy"] scratchpad show
+#bindsym F1 [class="scrcpy"] scratchpad show
 
-
+for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [instance="sun-awt-X11-XDialogPeer"] floating enable
 
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 for_window [class="yakuake"] floating enable
+for_window [class="joint_state_publisher"] floating enable
 #for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell"] floating enable;
 for_window [class="Plasma"] floating enable; border none
@@ -126,12 +134,17 @@ for_window [class="^.*"] border pixel 0
 # minimal space waste but clear separation
 gaps inner 10
 gaps outer 0
+set $inner_gaps 10
+set $outer_gaps 0
 smart_borders on
 
-workspace 10 gaps inner 0
-workspace 10 gaps outer 0
+
+
+#workspace 10 gaps inner 10
+#workspace 10 gaps outer 0
 #font
 font xft:FantasqueSansMono NF 11
+# font pango:FantasqueSansMono NF 0
 for_window [floating] border none
 
 #taking over the colors from the .Xresources file
@@ -140,7 +153,7 @@ for_window [floating] border none
 #background
 set $in #000000
 #foreground
-set $ac #c7c8c8
+set $ac #545454
 
 # class                 border  backgr. text indicator child_border
 client.focused          $ac     $ac $in $ac $ac
@@ -190,20 +203,22 @@ for_window [title="QtWebFlix"] floating_maximum_size 300 x 250
 for_window [title="QtWebFlix"] floating_minimum_size 300 x 250
 for_window [class="urxvt"] flaoting enable
 
-assign [class="URxvt"]          2
 assign [class="TelegramDesktop"] 2
 assign [class="Franz"]           2
-assign [class="Trello"]          9
 assign [class="Signal"]          2
 assign [class="WhatsApp"]        2
-assign [class="Mail"]            2
+#assign [class="Mail"]            2
 assign [class="discord"]         4
 assign [class="Gitter"]          2
 assign [class="Slack"]           2
+assign [class="Spotify"]         4
+assign [class="microsoft teams - insiders"] 6
+assign [class="Thunderbird"] 	 8
+assign [class="joint_state_publisher"] 2
+assign [class="gazebo"] 2
+assign [class="rviz"] 2
 #assign [class="firefoxdeveloperedition"]         3
 #assign [class="intellij"]       4
-assign [class="music"]           5
-assign [class="Spotify"]         4
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Monitor configuration (workspace -> monitor)
@@ -244,18 +259,22 @@ bindsym XF86MonBrightnessUp        exec --no-startup-id xbacklight -inc 5    # i
 bindsym XF86MonBrightnessDown      exec --no-startup-id xbacklight -dec 5    # decrease screen brightness
 bindsym $mod+XF86MonBrightnessDown exec xbacklight      -set      1
 bindsym $mod+XF86MonBrightnessUp   exec xbacklight      -set      100
+
+#rofi menus
 bindsym F8               exec networkmanager_dmenu
-bindsym F10              exec btmenu
+bindsym F10              exec rofi-bluetooth
 bindsym $mod+q                     kill
 bindsym $mod+Return                exec $term
+
+#launch applications
 bindsym $mod+b                     exec --no-startup-id firefox-developer-edition
-bindsym $mod+x                     exec --no-startup-id code-insiders
-bindsym $mod+t                     exec --no-startup-id TogglDesktop
-#bindsym $mod+b                exec firefox
-#bindsym $mod+x                exex --no-startup-id thunar
-bindsym $mod+Shift+v            exec --no-startup-id clipmenu
-# kill focused window
-#bindsym $mod+Shift+q kill
+bindsym $mod+x                     exec --no-startup-id code
+
+#bindsym $mod+t                     exec --no-startup-id TogglDesktop
+bindsym $mod+y			exec $term -e calcurse
+
+bindsym $mod+t			gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
+bindsym $mod+Shift+t		gaps inner current set 0; gaps outer current set 0
 
 # screenshotting ability
 bindsym --release $mod+Ctrl+4 exec --no-startup-id "maim -s > ~/Pictures/Screenshots/`date +%Y-%m-%d_%H-%M-%S`.jpg"
@@ -266,6 +285,13 @@ bindsym           Shift+$mod+p exec --no-startup-id passmenu
 bindsym $mod+Ctrl+Left workspace prev
 bindsym $mod+Ctrl+Right workspace next
 
+bindsym $mod+mod1+h workspace prev
+bindsym $mod+mod1+l workspace next
+
+
+ # alt + tab
+
+# bindsym $mod+Tab workspace back_and_forth
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 
@@ -274,14 +300,15 @@ bindsym $mod+Ctrl+Right workspace next
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+ctrl+d exec /home/ashwin/.scripts/bin/rofi_finder
+bindsym $mod+ctrl+d exec /home/ashwin/archive/.scripts/bin/rofi_finder
 bindsym $mod+d exec rofi -show combi
 bindsym $mod+Shift+d exec rofi -show run
-bindsym $mod+Tab exec rofi -show window
+bindsym $mod+Tab exec rofi -show window -theme rofi_full
 bindsym $mod+ctrl+Tab exec rofi -show drun
 
 #clipboard history manager
-bindsym alt+v exec /home/ashwin/.config/clipmenu/run.sh
+bindsym $mod+Shift+v            exec --no-startup-id clipmenu
+
 
 # change focus
 bindsym $mod+h focus left
@@ -316,6 +343,12 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+
+set $freeze Distraction-free mode (super+shift+f to reactivate bindings)
+mode "$freeze" { bindsym $mod+Shift+f mode "default"
+}
+
+bindsym $mod+Shift+f		mode "$freeze" ;; exec --no-startup-id notify-send "Distraction-free mode activated." "Press Super+Shift+f to return."
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -399,13 +432,15 @@ bindsym $mod+o mode "$mode_launcher"
 
 mode         "$mode_launcher" {
 
-    bindsym  e      exec mailspring ;mode "default"
+    bindsym  e      exec thunderbird ;mode "default"
     bindsym  m      exec $term       -e    ncmpcpp ;mode "default"
-    #bindsym p
     bindsym  x      exec thunar      ;mode "default"
-    bindsym  o      exec
+    bindsym  v      exec $term 	     -e    nvim; mode "default"
     bindsym  r      exec $term       -e    lf  "/home/ashwin"   ;mode "default"
-    bindsym n exec --no-startup-id code /home/ashwin/Documents/Syncthing/Default\ Folder/Notebooks ;mode "default"
+    bindsym  n	    exec $term -e nvim /home/ashwin/Documents/Notebooks/index.md  ;mode "default"
+    bindsym  q	    exec $term -e nvim /home/ashwin/Documents/Notebooks/QuickNote.md  ;mode "default"
+    bindsym  d	    exec $term -e nvim /home/ashwin/Documents/Notebooks/Diary/$(date +%b_%d).md  ;mode "default"
+
     bindsym  Escape mode "default"
     bindsym  Return mode "default"
 
@@ -433,17 +468,17 @@ bindsym $mod+P mode "$mode_system"
 # ----------------------------------------------------------------------------------------------------------------------
 # quick VM menu... TODO
 # ----------------------------------------------------------------------------------------------------------------------
-#
-#set $mode_vm vm [w]indows [m]anjaro
-#mode "$mode_vm" {
-#    bindsym w exec --no-startup-id sudo virsh start win10, sudo virt-viewer -f win10, mode "default"
-#    bindsym m exec --no-startup-id sudo virsh start manjaro, sudo virt-viewer -f manjaro, mode "default"
-#
-#    # back to normal: Enter or Escape
-#    bindsym Return mode "default"
-#    bindsym Escape mode "default"
-#}
-#bindsym $mod+i mode "$mode_vm"
+
+# set $mode_vm vm [w]indows [m]anjaro
+# mode "$mode_vm" {
+#     bindsym w exec sudo virsh start win10 && sudo virt-viewer -f win10, mode "default"
+#     bindsym m exec sudo virsh start manjaro, sudo virt-viewer -f manjaro
+
+#     # back to normal: Enter or Escape
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
+# bindsym $mod+i mode "$mode_vm"
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -462,6 +497,8 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+# new empty workspace
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/empty_workspace.sh
 # ----------------------------------------------------------------------------------------------------------------------
 # resizing configuration
 # ----------------------------------------------------------------------------------------------------------------------
