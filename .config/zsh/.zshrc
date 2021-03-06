@@ -7,15 +7,15 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-#POWERLEVEL9K_INSTANT_PROMPT=off
+POWERLEVEL9K_INSTANT_PROMPT=off
 
 autoload -U colors && colors # Load colors
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 
 
-#local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-#PROMPT="%F%(!.%{$fg[red]%}.%{$fg[green]%})[%(!.%{$fg[red]%}.%{$fg[green]%})%n%(!.%{$fg[red]%}.%{$fg[green]%})@%(!.%{$fg[red]%}.%{$fg[green]%})%M %{$fg[white]%}%c%(!.%{$fg[red]%}.%{$fg[green]%})]%{$reset_color%}%f${ret_status}%{$reset_color%}"
+local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT="%F%(!.%{$fg[red]%}.%{$fg[green]%})[%(!.%{$fg[red]%}.%{$fg[green]%})%n%(!.%{$fg[red]%}.%{$fg[green]%})@%(!.%{$fg[red]%}.%{$fg[green]%})%M %{$fg[white]%}%c%(!.%{$fg[red]%}.%{$fg[green]%})]%{$reset_color%}%f${ret_status}%{$reset_color%}"
 #
 
 # Basic auto/tab complete:
@@ -31,7 +31,8 @@ LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 
 # History in cache directory:
 HISTFILE=~/.cache/zsh/history
-HISTSIZE=SAVEHIST=10000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt sharehistory
 setopt extendedhistory
 # setopt  autocd autopushd \ pushdignoredups
@@ -49,10 +50,16 @@ alias lx="colorls -A --sd -X"
 
 # Export PATH
 
+#export GEM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gem/ruby/2.7.0/bin"
+#export GEM_PATH="${XDG_DATA_HOME:-$HOME/.local/share}/gem/ruby/2.7.0/bin"
+#export GEM_SPEC_CACHE="${XDG_DATA_HOME:-$HOME/.local/share}/gem/ruby/specs"
+
 export PATH="$PATH:/home/ashwin/.gem/ruby/2.7.0/bin"
+export PATH="${XDG_CONFIG_HOME:-$HOME/.config}/dynamic-colors/bin:$PATH"
 #xport PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 # export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$PATH:/home/ashwin/.node_modules/bin"
 export PATH="$PATH:/home/ashwin/development/flutter/bin"
 export PATH="$PATH:/home/ashwin/Android/Sdk/emulator"
 export PATH="$PATH:/home/ashwin/Android/Sdk/platform-tools"
@@ -108,6 +115,7 @@ bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
+bindkey "^A" vi-beginning-of-line
 
 
 # Change cursor shape for different vi modes.
@@ -123,13 +131,13 @@ function zle-keymap-select {
     echo -ne '\e[5 q'
   fi
 }
-zle -N zle-keymap-select
 
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
+    zle -K vicmd; # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[1 q"
 }
 zle -N zle-line-init
+zle -N zle-keymap-select
 
 # Use beam shape cursor on startup.
 echo -ne '\e[5 q'
@@ -153,7 +161,6 @@ lfcd () {
 
 bindkey -s '^o' 'lfcd\n'  # zsh
 
-bindkey -s '^a' 'bc -l\n'
 
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
@@ -213,6 +220,7 @@ man() {
 
 #Load syntax highlightim: should be last
 source /home/ashwin/.config/zsh/zsh-z.plugin.zsh
-source /home/ashwin/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /home/ashwin/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/ashwin/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 #source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source ~/.config/zsh/git.plugin.zsh
+source ~/.config/zsh/git.plugin.zsh

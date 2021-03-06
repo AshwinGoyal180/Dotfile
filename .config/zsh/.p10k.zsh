@@ -57,7 +57,7 @@
       nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
       nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
-      # node_version          # node.js version
+      node_version          # node.js version
       # go_version            # go version (https://golang.org)
       rust_version          # rustc version (https://www.rust-lang.org)
       # dotnet_version        # .NET version (https://dotnet.microsoft.com)
@@ -68,14 +68,14 @@
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
       # aws_eb_env            # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-      # azure                 # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-      # gcloud                # google cloud acccount and project (https://cloud.google.com/)
-      nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-      ranger                  # ranger shell (https://github.com/ranger/ranger)
+      azure                 # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+      gcloud                # google cloud acccount and project (https://cloud.google.com/)
+      #nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+      #ranger                  # ranger shell (https://github.com/ranger/ranger)
       vim_shell               # vim shell indicator (:sh)
       # midnight_commander    # midnight commander shell (https://midnight-commander.org/)
       #vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
-      battery               # internal battery
+      #battery               # internal battery
       vcs                     # git status
       # vpn_ip                # virtual private network indicator
       # ram                   # free RAM
@@ -585,13 +585,13 @@
   # Context format when running with privileges: bold user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%B%n@%m'
   # Context format when in SSH without privileges: user@hostname.
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_TEMPLATE='%n@%m'
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_TEMPLATE='%B%n@%m'
   # Default context format (no privileges, no SSH): user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n@%m'
 
   # Don't show context unless running with privileges or in SSH.
   # Tip: Remove the next line to always show context.
-  #typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
+  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
 
   # Custom icon.
   # typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION='⭐'
